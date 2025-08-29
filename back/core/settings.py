@@ -30,6 +30,7 @@ INSTALLED_APPS = [
 ]
 
 # --- Middleware 
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
@@ -96,7 +97,6 @@ USE_TZ = True
 
 # --- Static & Media
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"  
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
