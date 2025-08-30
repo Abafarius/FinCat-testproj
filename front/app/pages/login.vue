@@ -17,10 +17,7 @@
             <span v-else>Войти</span>
           </button>
           <div class="actions">
-  <button class="btn" :disabled="loading">
-    <span v-if="loading" class="spinner"></span>
-    <span v-else>Войти</span>
-  </button>
+
   <NuxtLink to="/register" class="btn ghost">Создать аккаунт</NuxtLink>
 </div>
 <p v-if="error" class="helper" style="color:var(--danger)">Неверный логин или пароль</p>
