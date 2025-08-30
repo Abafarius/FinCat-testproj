@@ -1,0 +1,63 @@
+/* ----- Фин-тема: светлая, чистая, без зависимостей ----- */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1f2937; --muted:#6b7280; --line:#e5e7eb;
+  --pri:#0ea5e9; --pri-600:#0284c7; --ok:#16a34a; --warn:#f59e0b; --danger:#ef4444;
+  --radius:12px; --shadow:0 6px 16px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box}
+html,body,#__nuxt{height:100%}
+body{margin:0; background:var(--bg); color:var(--text); font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+a{color:inherit}
+.container{max-width:1100px; margin:0 auto; padding:16px}
+.grid{display:grid; gap:12px}
+.grid.cards{grid-template-columns:repeat( auto-fit, minmax(280px,1fr) );}
+
+.navbar{position:sticky; top:0; z-index:10; backdrop-filter:saturate(180%) blur(8px);
+  background:rgba(255,255,255,.8); border-bottom:1px solid var(--line)}
+.navbar-inner{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700}
+.brand-badge{display:inline-grid; place-items:center; width:28px; height:28px; border-radius:8px; background:var(--pri); color:#fff}
+
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px}
+.card-row{display:flex; gap:16px; align-items:center}
+.logo{width:64px; height:64px; object-fit:contain; border:1px solid var(--line); border-radius:10px; background:#fafafa}
+
+.badge{display:inline-block; border:1px solid var(--line); padding:.125rem .5rem; border-radius:999px; font-size:.75rem; color:var(--muted); margin-right:6px}
+.badge.ok{border-color:#c6f6d5; color:#047857; background:#ecfdf5}
+
+.h1{font-size:1.5rem; font-weight:800; margin:0}
+.h2{font-size:1.1rem; font-weight:700; margin:0 0 8px}
+
+.row{display:flex; align-items:center; gap:10px}
+.right{margin-left:auto}
+.muted{color:var(--muted)}
+.divider{height:1px; background:var(--line); margin:12px 0}
+
+.input, .select, .file {
+  width:100%; padding:.65rem .8rem; border:1px solid var(--line); border-radius:10px; background:white;
+}
+.input:focus, .select:focus{outline:2px solid rgba(14,165,233,.35); border-color:var(--pri)}
+.checkbox{width:16px; height:16px}
+.label{font-size:.9rem; margin-bottom:6px; display:block}
+
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.6rem .9rem;
+  border:1px solid var(--pri-600); background:var(--pri); color:#fff; border-radius:10px; cursor:pointer}
+.btn:hover{background:var(--pri-600)}
+.btn.ghost{background:transparent; color:var(--text); border:1px solid var(--line)}
+.btn.danger{background:var(--danger); border-color:#dc2626}
+.btn.danger:hover{background:#dc2626}
+
+.form{display:grid; gap:12px}
+fieldset{border:none; padding:0; margin:0}
+.actions{display:flex; gap:10px; flex-wrap:wrap}
+
+.helper{font-size:.8rem; color:var(--muted)}
+.kv{display:flex; gap:8px; align-items:center}
+.kv .k{color:var(--muted); width:48px}
+.kv .v{font-weight:600}
+
+.empty{padding:32px; text-align:center; color:var(--muted)}
+/* простая анимация загрузки */
+.spinner{width:18px; height:18px; border:2px solid var(--line); border-top-color:var(--pri); border-radius:50%;
+  animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
