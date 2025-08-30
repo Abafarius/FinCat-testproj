@@ -11,16 +11,12 @@
           <label class="label">Пароль</label>
           <input v-model="password" type="password" class="input" required />
         </fieldset>
-        <div class="actions">
+        <div class="actions-row">
           <button class="btn" :disabled="loading">
             <span v-if="loading" class="spinner"></span>
             <span v-else>Войти</span>
           </button>
-          <div class="actions">
-
-  <NuxtLink to="/register" class="btn ghost">Создать аккаунт</NuxtLink>
-</div>
-<p v-if="error" class="helper" style="color:var(--danger)">Неверный логин или пароль</p>
+          <NuxtLink to="/register" class="btn ghost">Создать аккаунт</NuxtLink>
         </div>
         <p v-if="error" class="helper" style="color:var(--danger)">Неверный логин или пароль</p>
       </form>
@@ -41,7 +37,5 @@ const submit = async () => {
   try { await login(username.value, password.value); router.push("/") }
   catch { error.value = true }
   finally { loading.value = false }
-  
 }
-
 </script>
