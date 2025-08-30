@@ -40,7 +40,7 @@
             <img :src="preview" class="logo" />
           </div>
         </fieldset>
-        <div class="actions">
+        <div class="actions-row">
           <button class="btn" :disabled="loading">
             <span v-if="loading" class="spinner"></span>
             <span v-else>Создать</span>
@@ -76,20 +76,13 @@ const load = async () => {
   const res = await $fetch(`${config.public.apiBase}/orgs/${qs}`, { headers:{ Authorization:`Bearer ${access.value}` }})
   items.value = res.results ?? res
 }
-
 const loadLicenses = async () => {
   const res = await $fetch(`${config.public.apiBase}/licenses/?limit=1000`, { headers:{ Authorization:`Bearer ${access.value}` }})
   licenses.value = res.results ?? res
 }
-
 const apply = () => load()
 const reset = () => { q.value=""; load() }
-
-const onFile = (e) => {
-  const f = e.target.files?.[0]; form.logo = f || null
-  preview.value = f ? URL.createObjectURL(f) : null
-}
-
+const onFile = (e) => { const f=e.target.files?.[0]; form.logo=f||null; preview.value=f?URL.createObjectURL(f):null }
 const createOrg = async () => {
   loading.value = true
   try {
@@ -107,6 +100,5 @@ const createOrg = async () => {
     await load()
   } finally { loading.value = false }
 }
-
 onMounted(()=>{ load(); loadLicenses() })
 </script>
