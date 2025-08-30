@@ -49,9 +49,10 @@
       </form>
     </div>
 
-    <!-- Список -->
+    <!-- Список карточек -->
     <div v-if="items.length" class="grid cards">
       <OrgCard v-for="o in items" :key="o.id" :org="o">
+        <!-- Только для админа переопределяем правый угол на "Редактировать" -->
         <NuxtLink v-if="isAdmin" :to="`/org/${o.id}`" class="btn ghost">Редактировать</NuxtLink>
       </OrgCard>
     </div>
