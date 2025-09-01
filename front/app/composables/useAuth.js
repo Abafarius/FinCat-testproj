@@ -1,4 +1,3 @@
-// frontend/app/composables/useAuth.js
 export const useAuth = () => {
   const config = useRuntimeConfig()
   const user = useState("user", () => null)
@@ -22,7 +21,7 @@ export const useAuth = () => {
     user.value = me
   }
 
-  // Новое: регистрация + автологин
+  // регистрация + автологин
   const register = async ({ username, email, password }) => {
     await $fetch(`${config.public.apiBase}/auth/register/`, {
       method: "POST",
