@@ -24,17 +24,40 @@
 
 ## 🚀 Запуск проекта
 
-### 1. Запуск через Docker
-```bash
-# В корне проекта
-docker-compose up --build
-```
-Сервисы:
-- Backend: http://localhost:8000
-- Frontend: http://localhost:3000
-- База данных: PostgreSQL (порт 5432)
+## 🚀 Быстрый старт (Docker)
 
-### 2. Локальный запуск без Docker
+**Требуется:** Docker Desktop.
+
+1. Склонируйте репозиторий и перейдите в **корень проекта** (там, где `docker-compose.yml`).
+2. Создайте файл **`.env`** в корне и вставьте:
+   ```env
+   # --- Postgres ---
+   POSTGRES_DB=fincat
+   POSTGRES_USER=fincat
+   POSTGRES_PASSWORD=fincat
+
+   # --- Django ---
+   DJANGO_SECRET_KEY=please-change-me
+   DJANGO_ALLOWED_HOSTS=backend,localhost,127.0.0.1
+   DJANGO_DEBUG=False
+   CORS_ALLOW_ALL_ORIGINS=True
+   CSRF_TRUSTED_ORIGINS=http://localhost:3000
+
+   # --- Nuxt (frontend) ---
+   NUXT_PUBLIC_API_BASE=http://localhost:8000/api
+3. Поднимите контейнеры:
+```bash
+docker compose up --build
+```
+4. Создайте суперпользователя (админа):
+```bash
+docker compose exec backend python manage.py createsuperuser
+```
+5. (Опционально) Заполните базу демо-данными:
+```bash
+docker compose exec backend python manage.py seed
+```
+### Локальный запуск без Docker
 
 #### Backend
 ```bash
