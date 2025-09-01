@@ -1,0 +1,110 @@
+/* ======= Базовые переменные и сброс ======= */
+:root{
+  --bg:#f6f7f9; --card:#fff; --text:#1f2937; --muted:#6b7280; --line:#e5e7eb;
+  --pri:#0ea5e9; --pri-600:#0284c7; --danger:#ef4444;
+  --radius:14px; --shadow:0 8px 24px rgba(0,0,0,.07);
+}
+*{box-sizing:border-box}
+html,body,#__nuxt{height:100%}
+body{margin:0; background:var(--bg); color:var(--text); font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+a{color:inherit; text-decoration:none}
+
+/* ======= Контейнеры и сетка ======= */
+.container{max-width:1100px; margin:0 auto; padding:16px}
+.grid{display:grid; gap:16px}
+.grid.cards{grid-template-columns:repeat(auto-fit, minmax(320px,1fr));}
+
+/* ======= Навбар ======= */
+.navbar{position:sticky; top:0; z-index:10; backdrop-filter:saturate(180%) blur(8px);
+  background:rgba(255,255,255,.85); border-bottom:1px solid var(--line)}
+.navbar-inner{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700}
+.brand-badge{display:inline-grid; place-items:center; width:28px; height:28px; border-radius:8px; background:var(--pri); color:#fff}
+
+/* ======= Карточки организаций ======= */
+.card{
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:16px;
+  overflow:hidden;
+  transition:box-shadow .15s ease, transform .15s ease;
+}
+.card:hover{ box-shadow:0 12px 32px rgba(0,0,0,.10); transform:translateY(-2px); }
+
+/* Ряд карточки: кнопка не мешает контенту */
+.card-row{ display:flex; gap:14px; align-items:flex-start; }
+.logo{
+  width:64px; height:64px; flex:0 0 64px;
+  object-fit:cover; border-radius:12px;
+  background:#0b0c0d;
+  border:1px solid var(--line);
+}
+
+/* Контент умеет сжиматься и имеет резерв справа под кнопку */
+.content{
+  flex:1 1 auto; min-width:0;
+  padding-right:132px; /* резерв под кнопку «Редактировать» */
+}
+.h2{
+  font-size:1.1rem; font-weight:700; margin:0 0 6px;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; word-break:break-word;
+}
+.kv{display:flex; gap:10px; align-items:center; margin:2px 0 6px}
+.kv .k{color:var(--muted); min-width:42px}
+.kv .v{font-weight:700; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
+
+.badge{
+  display:inline-block; margin:0 6px 6px 0;
+  padding:.15rem .55rem; border-radius:999px;
+  font-size:.75rem; color:var(--muted); background:#f7f7f8; border:1px solid var(--line);
+}
+
+/* Кнопка закреплена в правом верхнем углу и не толкает разметку */
+.actions{
+  position:absolute; top:12px; right:12px;
+  flex:0 0 auto; align-self:flex-start;
+}
+.actions .btn{ height:34px; padding:0 12px; border-radius:12px; font-size:14px; white-space:nowrap }
+
+/* ======= Формы и кнопки ======= */
+.input,.select,.file{
+  width:100%; padding:.65rem .8rem;
+  background:#fff; border:1px solid var(--line); border-radius:10px;
+}
+.input:focus,.select:focus{outline:2px solid rgba(14,165,233,.35); border-color:var(--pri)}
+.checkbox{width:16px; height:16px}
+.label{font-size:.9rem; margin-bottom:6px; display:block}
+.form{display:grid; gap:12px}
+fieldset{border:none; margin:0; padding:0}
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.6rem .9rem; border:1px solid var(--pri-600);
+  background:var(--pri); color:#fff; border-radius:10px; cursor:pointer; white-space:nowrap;
+  transition:background .15s ease, border-color .15s ease, transform .05s ease;
+}
+.btn:hover{background:var(--pri-600)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent; color:var(--text); border:1px solid var(--line); margin: 3px}
+.btn.danger{background:var(--danger); border-color:#dc2626}
+.btn.danger:hover{background:#dc2626}
+.actions-row{display:flex; gap:10px; flex-wrap:wrap}
+
+/* Подсказки и пустые состояния */
+.helper{font-size:.8rem; color:var(--muted)}
+.empty{padding:32px; text-align:center; color:var(--muted)}
+
+/* Спиннер */
+.spinner{width:18px; height:18px; border:2px solid var(--line); border-top-color:var(--pri); border-radius:50%; animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ======= Адаптив ======= */
+@media (max-width: 640px){
+  .grid.cards{grid-template-columns:1fr;}
+  .card-row{flex-wrap:wrap}
+  .content{padding-right:0}
+  .actions{position:static; width:100%; margin-top:8px; display:flex; justify-content:flex-end;}
+}
